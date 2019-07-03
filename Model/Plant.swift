@@ -34,6 +34,13 @@ func load<T: Decodable>(_ filename: String, as type: T.Type = T.self) -> T {
     }
 }
 
+
+enum Toxicity: String, Codable, CaseIterable {
+    case toxic = "toxic"
+    case nonToxic = "non toxic"
+    case toxicRoots = "toxic roots"
+}
+
 class Plant: Codable, Identifiable, BindableObject {
     
     static func == (lhs: Plant, rhs: Plant) -> Bool {
@@ -49,6 +56,6 @@ class Plant: Codable, Identifiable, BindableObject {
     var id: Int = 0 { didSet { didChange.send(self) }}
     var name: String = "" { didSet { didChange.send(self) }}
     var shortDescription: String = "" { didSet { didChange.send(self) }}
-    var toxicity: String = ""  { didSet { didChange.send(self) }}
+    var toxicity: Toxicity = .nonToxic { didSet { didChange.send(self) }}
     var imageURL: String? { didSet { didChange.send(self) }}
 }

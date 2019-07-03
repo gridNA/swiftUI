@@ -223,7 +223,6 @@ struct PlantList1: View {
             List {
                 ForEach(plantsStore.plants) { plant in
                     NavigationButton(
-                        //destination: Text("")) {
                         destination: PlantsForm(plant: plant)) {
                         PlantCell(plant: plant)
                     }
